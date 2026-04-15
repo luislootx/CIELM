@@ -7,6 +7,8 @@ Department of Electrical and Computer Engineering, Texas A&M University
 
 ![Step-CINN Architecture](figures/stepcinn_architecture.png)
 
+> **Step-CINN pipeline.** **Stage 1**: the initial condition is provided as input. **Stage 2**: a mixed-activation ELM fits it using tanh neurons (random, fixed) for smooth components and step neurons (positions discovered by a genetic algorithm) for discontinuities; output weights are solved analytically via ridge regression. **Stage 3**: the fitted network is evaluated at the characteristic coordinate to produce the PDE solution — direct shift for linear PDEs, diagonalization for systems, and Newton continuation with automatic shock detection via the xi-gap method for nonlinear PDEs. No optimizer, no loss function, no collocation, fully interpretable.
+
 ---
 
 ## The Problem
