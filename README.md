@@ -5,6 +5,8 @@
 Luis Loo and Ulisses Braga-Neto  
 Department of Electrical and Computer Engineering, Texas A&M University
 
+![Step-CINN Architecture](figures/stepcinn_architecture.png)
+
 ---
 
 ## The Problem
