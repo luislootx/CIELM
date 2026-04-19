@@ -12,6 +12,50 @@ of sigmoid step neurons so that piecewise-smooth solutions with shocks,
 Riemann jumps, or discontinuous initial data are represented exactly.
 No gradient-descent loop, no PDE residual loss, no collocation points.
 
+<p align="center">
+  <img src="figures/architecture.png" width="720" alt="CIELM and Step-CIELM architecture"><br>
+  <em>Fit the initial condition with a tanh (+ optional step) ELM, then
+  evaluate the fitted basis at the characteristic coordinate. The PDE is
+  satisfied by construction.</em>
+</p>
+
+## At a glance
+
+**Smooth problems: CIELM beats the characteristics-informed baseline by
+36–645×.** On the periodic advection stiffness benchmark of Braga-Neto
+(2023), CIELM's error is flat at ~8×10⁻⁴ across transport velocities
+v = 20, 30, 40, 50, while CINN and PINN degrade sharply.
+
+<p align="center">
+  <img src="figures/headline_stiffness.png" width="520" alt="Stiffness immunity: CIELM vs CINN vs PINN">
+</p>
+
+**Discontinuous problems: the smooth basis saturates.** A 16× increase
+in the number of tanh neurons improves the error by only 1.1–1.4× on
+four canonical Riemann benchmarks — the bottleneck is architectural,
+not computational.
+
+<p align="center">
+  <img src="figures/saturation.png" width="520" alt="Saturation of the smooth basis">
+</p>
+
+**Step-CIELM closes the gap by 5–7×.** Adding a single step neuron at
+the discontinuity recovers an order of magnitude in accuracy with
+deterministic reproducibility across random seeds.
+
+<p align="center">
+  <img src="figures/step_gap.png" width="520" alt="Step neuron gap on discontinuous benchmarks">
+</p>
+
+**Inviscid Burgers: a single network handles pre- and post-shock.** The
+unified solver smoothly transitions from a fixed-point iteration on the
+smooth tanh basis (before shock formation) to Rankine–Hugoniot tracking
+with a step neuron (after), without retraining.
+
+<p align="center">
+  <img src="figures/burgers_unified.gif" width="520" alt="Unified pre- and post-shock Burgers solver">
+</p>
+
 ## Citation
 
 ```bibtex

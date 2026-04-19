@@ -5,8 +5,7 @@ __pycache__/
 .DS_Store
 .vscode/
 .idea/
-figures/
-results/
-*.png
-*.pdf
-!figures/architecture.png
+scripts/figures/
+scripts/results/
+scripts/*.png
+scripts/*.pdf
